@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<div class="container py-5">
+  <h2 class="text-center mb-4">Register</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger text-center"><%= error %></div>
+  <% } %>
+
+  <form action="/register" method="POST" class="w-50 mx-auto">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+
+    <div class="form-group position-relative">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" class="form-control" required>
+      <button type="button" id="togglePassword" class="btn  position-absolute" style="top: 32px; right: 10px;">Show</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Register</button>
+  </form>
+</div>
+
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function () {
+    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+    togglePassword.textContent = type === "password" ? "Show" : "Hide";
+  });
+</script>
+
+<%- include('partials/footer') %>
